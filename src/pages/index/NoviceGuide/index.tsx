@@ -1,11 +1,6 @@
 import * as React from "react";
 import cn from "classnames";
-import {
-  usePageScroll,
-  createSelectorQuery,
-  pxTransform,
-  NodesRef,
-} from "@tarojs/taro";
+import { usePageScroll, createSelectorQuery, NodesRef } from "@tarojs/taro";
 import { View } from "@tarojs/components";
 import { NoviceGuideProps } from "./interface";
 import styles from "./index.module.scss";
@@ -39,52 +34,52 @@ export default function NoviceGuide({
       if (current.placement === "top") {
         const { left, width } = boxRef.current;
         return {
-          top: pxTransform(scrollTop.current + boxRef.current.top - offsetY),
-          left: pxTransform(
+          top: `${scrollTop.current + boxRef.current.top - offsetY}px`,
+          left: `${
             left + width / 2 - containerRef.current.width / 2 + offsetX
-          ),
+          }px`,
         };
       }
 
       if (current.placement === "bottom") {
         const { left, width } = boxRef.current;
         return {
-          top: pxTransform(scrollTop.current + boxRef.current.bottom + offsetY),
-          left: pxTransform(
+          top: `${scrollTop.current + boxRef.current.bottom + offsetY}px`,
+          left: `${
             left + width / 2 - containerRef.current.width / 2 + offsetX
-          ),
+          }px`,
         };
       }
 
       if (current.placement === "leftTop") {
         const { right } = boxRef.current;
         return {
-          top: pxTransform(scrollTop.current + boxRef.current.top - offsetY),
-          left: pxTransform(right - containerRef.current.width + offsetX),
+          top: `${scrollTop.current + boxRef.current.top - offsetY}px`,
+          left: `${right - containerRef.current.width + offsetX}px`,
         };
       }
 
       if (current.placement === "leftBottom") {
         const { right } = boxRef.current;
         return {
-          top: pxTransform(scrollTop.current + boxRef.current.bottom + offsetY),
-          left: pxTransform(right - containerRef.current.width + offsetX),
+          top: `${scrollTop.current + boxRef.current.bottom + offsetY}px`,
+          left: `${right - containerRef.current.width + offsetX}px`,
         };
       }
 
       if (current.placement === "rightTop") {
         const { right } = boxRef.current;
         return {
-          top: pxTransform(scrollTop.current + boxRef.current.top - offsetY),
-          left: pxTransform(right + offsetX),
+          top: `${scrollTop.current + boxRef.current.top - offsetY}px`,
+          left: `${right + offsetX}px`,
         };
       }
 
       if (current.placement === "rightBottom") {
         const { right } = boxRef.current;
         return {
-          top: pxTransform(scrollTop.current + boxRef.current.bottom + offsetY),
-          left: pxTransform(right + offsetX),
+          top: `${scrollTop.current + boxRef.current.bottom + offsetY}px`,
+          left: `${right + offsetX}px`,
         };
       }
     }
@@ -100,11 +95,12 @@ export default function NoviceGuide({
           const rect = res[0];
 
           if (rect) {
+            console.log("rect", rect);
             setBoxStyle({
-              left: pxTransform(rect.left),
-              top: pxTransform(rect.top + scrollTop.current),
-              width: pxTransform(rect.width),
-              height: pxTransform(rect.height),
+              left: `${rect.left}px`,
+              top: `${rect.top + scrollTop.current}px`,
+              width: `${rect.width}px`,
+              height: `${rect.height}px`,
             });
             boxRef.current = rect;
           }
@@ -168,4 +164,6 @@ export default function NoviceGuide({
       </View>
     );
   }
+
+  return null;
 }
